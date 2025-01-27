@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/"/>
+    <meta charset="utf-8"/>
+    <title>Angular Template</title>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+  <script>
+        function updateTheme() {
+          const isDark = document.documentElement.classList.contains('dark');
+
+          // Update Prime theme
+          const existingPrimeLink = document.querySelector('link[data-theme]');
+          if (existingPrimeLink) {
+            existingPrimeLink.href = isDark ? 'primeone-dark.css' : 'primeone-light.css';
+          } else {
+            const primeLink = document.createElement('link');
+            primeLink.rel = 'stylesheet';
+            primeLink.setAttribute('data-theme', 'true');
+            primeLink.href = isDark ? 'primeone-dark.css' : 'primeone-light.css';
+            document.head.appendChild(primeLink);
+          }
+
+          // Update App theme
+          const existingAppLink = document.querySelector('link[app-theme]');
+          if (existingAppLink) {
+            existingAppLink.href = isDark ? 'theme-dark.css' : 'theme-light.css';
+          } else {
+            const appLink = document.createElement('link');
+            appLink.rel = 'stylesheet';
+            appLink.setAttribute('app-theme', 'true');
+            appLink.href = isDark ? 'theme-dark.css' : 'theme-light.css';
+            document.head.appendChild(appLink);
+          }
+        }
+      updateTheme();
+
+      const observer = new MutationObserver(() => updateTheme());
+      observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+      });
+      </script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
+</head>
+  <body>
+    <app-root></app-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+</html>
